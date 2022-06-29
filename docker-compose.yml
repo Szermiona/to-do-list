@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+
+  mariadb:
+    image: mariadb
+    container_name: "todolist_mariadb"
+    stop_grace_period: 30s
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todolist
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/mysql:/var/lib/mysql
+#      - ./db/dump.sql:/docker-entrypoint-initdb.d/dump.sql

@@ -1,15 +1,13 @@
 package todolist.repository;
 
-import todolist.domain.Task;
+import org.springframework.data.jpa.repository.JpaRepository;
+import todolist.entity.TaskDAO;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-public class TaskRepository {
+public interface TaskRepository extends JpaRepository<TaskDAO, UUID> {
 
-    private static List<Task> tasksRepository = new ArrayList<>();
-
-    public static List<Task> getTasksRepository() {
-        return tasksRepository;
-    }
+    @Override
+    List<TaskDAO> findAll();
 }

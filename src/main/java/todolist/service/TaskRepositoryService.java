@@ -1,20 +1,28 @@
 package todolist.service;
 
-import org.springframework.stereotype.Component;
-import todolist.domain.Task;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import todolist.dto.CreateTaskDTO;
+import todolist.dto.TaskDTO;
+import todolist.entity.TaskDAO;
 import todolist.repository.TaskRepository;
 
-import java.util.List;
-
-@Component
+@Service
 public class TaskRepositoryService {
 
-    public List<Task> getTasksList() {
-        return TaskRepository.getTasksRepository();
+    private final TaskRepository taskRepository;
+    private final ModelMapper modelMapper;
+
+    public TaskRepositoryService(TaskRepository taskRepository, ModelMapper modelMapper) {
+        this.taskRepository = taskRepository;
+        this.modelMapper = modelMapper;
     }
 
-    public void addTask(Task task) {
-        List<Task> taskList = TaskRepository.getTasksRepository();
-        taskList.add(task);
+    @Transactional
+    public TaskDTO addTask(CreateTaskDTO createTaskDTO) {
+        TaskDAO taskDAO = new TaskDAO(createTaskDTO.getDescription(),createTaskDTO.getCategory(), createTaskDTO.getPriority(), createTaskDTO.getDeadline());
+        taskRepository.save(taskDAO);
+        return modelMapper.map(taskDAO, TaskDTO.class);
     }
 }

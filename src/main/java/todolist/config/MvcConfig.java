@@ -13,7 +13,7 @@ import java.util.Locale;
 
 @Configuration
 @ComponentScan
-public class WebConfig implements WebMvcConfigurer {
+public class MvcConfig implements WebMvcConfigurer {
 
     @Bean
     public LocaleResolver localeResolver () {
