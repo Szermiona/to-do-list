@@ -20,7 +20,7 @@
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="btn btn-outline-light" style="margin-left: 20px" th:href="@{add_task}" th:text="#{index.navbar.addbutton}">Add new taskDAO</a>
+          <a class="btn btn-outline-light" style="margin-left: 20px" th:href="@{add_task}" th:text="#{index.navbar.addbutton}">Add new task</a>
         </li>
         </a>
       </ul>
@@ -42,7 +42,7 @@
     <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
   </symbol>
 </svg>
-<div th:if="${taskList.size() == 0}" class="row align-items-center">
+<div th:if="${taskList.isEmpty()}" class="row align-items-center">
   <div class="col"></div>
   <div class="col-6">
     <div class="container-fluid" style="margin-top: 30px">
@@ -50,7 +50,7 @@
         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
           <use xlink:href="#info-fill"/>
         </svg>
-        <span th:text="#{index.empty.info}">Your list is still empty. To add your first taskDAO, use the button above. Keep yourself organized with To-Do List!</span>
+        <span th:text="#{index.empty.info}">Your list is still empty. To add your first task, use the button above. Keep yourself organized with To-Do List!</span>
       </div>
     </div>
   </div>

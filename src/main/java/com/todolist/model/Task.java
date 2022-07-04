@@ -1,15 +1,11 @@
-package todolist.entity;
+package com.todolist.model;
 
 
 import lombok.*;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
-import todolist.domain.Category;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -18,14 +14,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode
-public class TaskDAO {
+@Table(name = Task.TABLE_NAME)
+public class Task {
 
     public static final String TABLE_NAME = "task";
     public static final String COLUMN_PREFIX = "t_";
 
-    public TaskDAO(String description, Category category, int priority, LocalDate deadline) {
+    public Task(String description, Category category, int priority, LocalDate deadline) {
+        this.id = id;
         this.description = description;
         this.category = category;
         this.priority = priority;
@@ -38,11 +34,11 @@ public class TaskDAO {
     private UUID id;
 
     @Size(min = 4, max = 20, message = "{task.validation.description}")
-    @NotNull(message = "{task.validation.blank}")
+    @NotNull(message = "{task.validation.null}")
     @Column(name = COLUMN_PREFIX + "id")
     private String description;
 
-    @NotNull(message = "{task.validation.blank}")
+    @NotNull(message = "{task.validation.null}")
     @Column(name = COLUMN_PREFIX + "category")
     private Category category;
 
@@ -52,8 +48,6 @@ public class TaskDAO {
     private int priority;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Future(message = "{task.validation.date}")
-    @NotNull(message = "{task.validation.blank}")
     @Column(name = COLUMN_PREFIX + "deadline")
     private LocalDate deadline;
 }
