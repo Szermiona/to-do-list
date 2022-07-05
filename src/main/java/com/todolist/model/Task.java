@@ -21,7 +21,6 @@ public class Task {
     public static final String COLUMN_PREFIX = "t_";
 
     public Task(String description, Category category, int priority, LocalDate deadline) {
-        this.id = id;
         this.description = description;
         this.category = category;
         this.priority = priority;
@@ -34,11 +33,9 @@ public class Task {
     private UUID id;
 
     @Size(min = 4, max = 20, message = "{task.validation.description}")
-    @NotNull(message = "{task.validation.null}")
-    @Column(name = COLUMN_PREFIX + "id")
+    @Column(name = COLUMN_PREFIX + "description")
     private String description;
 
-    @NotNull(message = "{task.validation.null}")
     @Column(name = COLUMN_PREFIX + "category")
     private Category category;
 
@@ -49,5 +46,7 @@ public class Task {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = COLUMN_PREFIX + "deadline")
+    @NotNull(message = "{task.validation.null}")
+    @Future(message = "{task.validation.date}")
     private LocalDate deadline;
 }

@@ -1,6 +1,7 @@
 package com.todolist.controller;
 
 import com.todolist.dto.CreateTaskDTO;
+import com.todolist.model.Task;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -38,16 +39,16 @@ public class IndexController {
 
     @GetMapping("/add_task")
     public String addForm(Model model) {
-        model.addAttribute("task", new CreateTaskDTO());
+        model.addAttribute("task", new Task());
         return "add_task";
     }
 
     @PostMapping("/add_task")
-    public String add(@Valid @ModelAttribute("task") CreateTaskDTO createTaskDTO, BindingResult result, Model model) {
+    public String add(@Valid Task task, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "add_task";
         }
-        model.addAttribute("task", taskService.addTask(createTaskDTO));
+        model.addAttribute("task", taskService.addTask(task));
         return "added_new_task";
     }
 }

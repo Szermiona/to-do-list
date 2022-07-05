@@ -4,7 +4,6 @@ import com.todolist.dto.CreateTaskDTO;
 import com.todolist.dto.TaskDTO;
 import com.todolist.model.Task;
 import com.todolist.repository.TaskRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +26,12 @@ public class TaskService {
     @Transactional
     public TaskDTO addTask(CreateTaskDTO createTaskDTO) {
         Task task = taskMapper.mapToEntity(createTaskDTO);
+        taskRepository.save(task);
+        return taskMapper.mapToDto(task);
+    }
+
+    @Transactional
+    public TaskDTO addTask(Task task) {
         taskRepository.save(task);
         return taskMapper.mapToDto(task);
     }
