@@ -79,37 +79,37 @@
     </thead>
     <tbody>
     <tr class="table-danger" th:if="${task.getPriority() == 1}" th:each="task : ${taskList}">
-      <th class="text-center" style="color:#343a40;" scope="row" th:text="${task.getId()}"></th>
+      <th class="text-center" style="color:#343a40;" scope="row" th:text="${taskStat.count}"></th>
       <td class="text-center" style="color:#343a40;" th:text="${task.getDescription()}"></td>
-      <td class="text-center" style="color:#343a40;" th:text="${task.getCategory()}"></td>
+      <td class="text-center" style="color:#343a40;" th:text="${task.getCategory().getName()}"></td>
       <td class="text-center" style="color:#343a40;" th:text="${task.getPriority()}"></td>
       <td class="text-center" style="color:#343a40;" th:text="${task.getDeadline()}"></td>
     </tr>
     <tr class="table-warning" th:if="${task.getPriority() == 2}" th:each="task : ${taskList}">
-      <th class="text-center" style="color:#343a40;" scope="row" th:text="${task.getId()}"></th>
+      <th class="text-center" style="color:#343a40;" scope="row" th:text="${taskStat.count}"></th>
       <td class="text-center" style="color:#343a40;" th:text="${task.getDescription()}"></td>
-      <td class="text-center" style="color:#343a40;" th:text="${task.getCategory()}"></td>
+      <td class="text-center" style="color:#343a40;" th:text="${task.getCategory().getName()}"></td>
       <td class="text-center" style="color:#343a40;" th:text="${task.getPriority()}"></td>
       <td class="text-center" style="color:#343a40;" th:text="${task.getDeadline()}"></td>
     </tr>
     <tr class="table-success" th:if="${task.getPriority() == 3}" th:each="task : ${taskList}">
-      <th class="text-center" style="color:#343a40;" scope="row" th:text="${task.getId()}"></th>
+      <th class="text-center" style="color:#343a40;" scope="row" th:text="${taskStat.count}"></th>
       <td class="text-center" style="color:#343a40;" th:text="${task.getDescription()}"></td>
-      <td class="text-center" style="color:#343a40;" th:text="${task.getCategory()}"></td>
+      <td class="text-center" style="color:#343a40;" th:text="${task.getCategory().getName()}"></td>
       <td class="text-center" style="color:#343a40;" th:text="${task.getPriority()}"></td>
       <td class="text-center" style="color:#343a40;" th:text="${task.getDeadline()}"></td>
     </tr>
     <tr class="table-primary" th:if="${task.getPriority() == 4}" th:each="task : ${taskList}">
-      <th class="text-center" style="color:#343a40;" scope="row" th:text="${task.getId()}"></th>
+      <th class="text-center" style="color:#343a40;" scope="row" th:text="${taskStat.count}"></th>
       <td class="text-center" style="color:#343a40;" th:text="${task.getDescription()}"></td>
-      <td class="text-center" style="color:#343a40;" th:text="${task.getCategory()}"></td>
+      <td class="text-center" style="color:#343a40;" th:text="${task.getCategory().getName()}"></td>
       <td class="text-center" style="color:#343a40;" th:text="${task.getPriority()}"></td>
       <td class="text-center" style="color:#343a40;" th:text="${task.getDeadline()}"></td>
     </tr>
     <tr class="table-secondary" th:if="${task.getPriority() == 5}" th:each="task : ${taskList}">
-      <th class="text-center" style="color:#343a40;" scope="row" th:text="${task.getId()}"></th>
+      <th class="text-center" style="color:#343a40;" scope="row" th:text="${taskStat.count}"></th>
       <td class="text-center" style="color:#343a40;" th:text="${task.getDescription()}"></td>
-      <td class="text-center" style="color:#343a40;" th:text="${task.getCategory()}"></td>
+      <td class="text-center" style="color:#343a40;" th:text="${task.getCategory().getName()}"></td>
       <td class="text-center" style="color:#343a40;" th:text="${task.getPriority()}"></td>
       <td class="text-center" style="color:#343a40;" th:text="${task.getDeadline()}"></td>
     </tr>

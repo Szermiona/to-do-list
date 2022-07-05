@@ -16,12 +16,10 @@ import java.util.UUID;
 public class TaskService {
 
     private final TaskRepository taskRepository;
-    private final ModelMapper modelMapper;
     private final TaskMapper taskMapper;
 
-    public TaskService(TaskRepository taskRepository, ModelMapper modelMapper, TaskMapper taskMapper) {
+    public TaskService(TaskRepository taskRepository, TaskMapper taskMapper) {
         this.taskRepository = taskRepository;
-        this.modelMapper = modelMapper;
         this.taskMapper = taskMapper;
     }
 
