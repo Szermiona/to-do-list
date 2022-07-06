@@ -17,7 +17,7 @@ import java.util.UUID;
 @Table(name = Task.TABLE_NAME)
 public class Task {
 
-    public static final String TABLE_NAME = "task";
+    public static final String TABLE_NAME = "tasks";
     public static final String COLUMN_PREFIX = "t_";
 
     public Task(String description, Category category, int priority, LocalDate deadline) {
