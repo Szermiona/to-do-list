@@ -4,6 +4,7 @@ import com.todolist.dto.CreateTaskDTO;
 import com.todolist.dto.TaskDTO;
 import com.todolist.model.Task;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +12,7 @@ import com.todolist.model.Category;
 import com.todolist.repository.TaskRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -21,6 +23,23 @@ class TaskServiceTest {
     @Autowired
     private TaskRepository taskRepository;
 
+    @BeforeEach
+    void populateDatabase() {
+        List<TaskDTO> tasks = new ArrayList<>();
+
+        CreateTaskDTO createTaskDTO1 = new CreateTaskDTO("Task 1", Category.WORK, 1, LocalDate.now().plusDays(5));
+        tasks.add(taskService.addTask(createTaskDTO1));
+
+        CreateTaskDTO createTaskDTO2 = new CreateTaskDTO("Task 2", Category.HOUSEHOLD, 2, LocalDate.now().plusDays(10));
+        tasks.add(taskService.addTask(createTaskDTO2));
+
+        CreateTaskDTO createTaskDTO3 = new CreateTaskDTO("Task 3", Category.GENERAL, 3, LocalDate.now().plusDays(15));
+        tasks.add(taskService.addTask(createTaskDTO3));
+
+        CreateTaskDTO createTaskDTO4 = new CreateTaskDTO("Task 4", Category.PERSONAL, 4, LocalDate.now().plusDays(20));
+        tasks.add(taskService.addTask(createTaskDTO4));
+    }
+
     @Test
     void addTask_returnsTaskDTO_givenCreateTaskDto() {
         CreateTaskDTO createTaskDTO = new CreateTaskDTO();
@@ -29,7 +48,6 @@ class TaskServiceTest {
         createTaskDTO.setDescription("task description");
         createTaskDTO.setPriority(3);
         TaskDTO taskDTO = taskService.addTask(createTaskDTO);
-        List<TaskDTO> taskDTOS = taskService.fetchAll();
         Assertions.assertNotNull(taskDTO);
     }
 
@@ -41,11 +59,24 @@ class TaskServiceTest {
         task.setDescription("task description");
         task.setPriority(3);
         TaskDTO taskDTO = taskService.addTask(task);
-        List<TaskDTO> taskDTOS = taskService.fetchAll();
         Assertions.assertNotNull(taskDTO);
     }
 
     @Test
-    void fetchAll() {
+    void fetchAll_returnsListOfTasks() {
+        List<TaskDTO> tasks = taskService.fetchAll();
+        Assertions.assertEquals(4, tasks.size());
+    }
+
+    @Test
+    void deleteById() {
+        taskService.deleteById(taskRepository.findAll().get(0).getId());
+        Assertions.assertEquals(3, taskRepository.findAll().size());
+    }
+
+    @Test
+    void deleteAll() {
+        taskService.deleteAll();
+        Assertions.assertEquals(0, taskRepository.findAll().size());
     }
 }
