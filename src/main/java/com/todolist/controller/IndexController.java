@@ -32,24 +32,25 @@ public class IndexController {
     private final TaskService taskService;
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String displayMainPage(Model model) {
         model.addAttribute("taskList", taskService.fetchAll());
         return "index";
     }
 
     @GetMapping("/add-task")
-    public String addForm(Model model) {
+    public String displayAddForm(Model model) {
         model.addAttribute("task", new Task());
         return "add-task";
     }
 
     @PostMapping("/add-task")
-    public RedirectView add(@Valid Task task, BindingResult result, Model model) {
+    public String addNewTask(@Valid Task task, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return new RedirectView("/add-task");
+            return "add-task";
         }
         model.addAttribute("task", taskService.addTask(task));
-        return new RedirectView("/");
+        model.addAttribute("taskList", taskService.fetchAll());
+        return "index";
     }
 
     @GetMapping("/delete-task/{id}")
@@ -59,7 +60,7 @@ public class IndexController {
     }
 
     @GetMapping("/delete-all")
-    public String deleteAll() {
+    public String deleteAllTasks() {
         taskService.deleteAll();
         return "index";
     }
