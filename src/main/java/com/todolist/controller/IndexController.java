@@ -44,12 +44,12 @@ public class IndexController {
     }
 
     @PostMapping("/add-task")
-    public String add(@Valid Task task, BindingResult result, Model model) {
+    public RedirectView add(@Valid Task task, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "add-task";
+            return new RedirectView("/add-task");
         }
         model.addAttribute("task", taskService.addTask(task));
-        return "added-new-task";
+        return new RedirectView("/");
     }
 
     @GetMapping("/delete-task/{id}")
