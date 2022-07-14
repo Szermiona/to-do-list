@@ -12,3 +12,6 @@ To stop the database, use the following command:
 
 ```docker-compose stop```
 
+After connecting to database, run the application with ToDoList class.
+
+URL: http://localhost:8082/
