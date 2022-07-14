@@ -1,7 +1,7 @@
 package com.todolist.controller;
 
-import com.todolist.dto.CreateTaskDTO;
 import com.todolist.model.Task;
+import com.todolist.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -10,13 +10,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import com.todolist.service.TaskService;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -30,25 +31,36 @@ public class IndexController {
 
     private final TaskService taskService;
 
-
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("taskList", taskService.fetchAll());
         return "index";
     }
 
-    @GetMapping("/add_task")
+    @GetMapping("/add-task")
     public String addForm(Model model) {
         model.addAttribute("task", new Task());
-        return "add_task";
+        return "add-task";
     }
 
-    @PostMapping("/add_task")
+    @PostMapping("/add-task")
     public String add(@Valid Task task, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "add_task";
+            return "add-task";
         }
         model.addAttribute("task", taskService.addTask(task));
-        return "added_new_task";
+        return "added-new-task";
+    }
+
+    @GetMapping("/delete-task/{id}")
+    public RedirectView deleteTask(@PathVariable("id") UUID id) {
+        taskService.deleteById(id);
+        return new RedirectView("/");
+    }
+
+    @GetMapping("/delete-all")
+    public String deleteAll() {
+        taskService.deleteAll();
+        return "index";
     }
 }
