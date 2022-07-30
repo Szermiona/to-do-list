@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:fragment="header (title)">
+    <head>
+        <meta charset="UTF-8">
+        <title th:text="${title}"></title>
+        <div>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+                  integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+                  crossorigin="anonymous">
+        </div>
+    </head>
+</div>
+
+<div th:fragment="navbar">
+    <nav class="navbar navbar-expand bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light" th:href="@{/}">
+                <i class="bi bi-list-check"></i>
+                To-Do List
+            </a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" style="margin-left: 20px" th:href="@{add-task}"
+                           th:text="#{index.navbar.add-button}">Add new task</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-item dropdown float-end" style="margin-right: 10px">
+                <a class="dropdown-toggle link-dark btn"
+                   style="background-color: ghostwhite; border-radius: 3px" href="#" id="navbarDropdownMenuLink"
+                   role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    <span th:text="#{html.common.menu.account}"></span>
+                </a>
+                <ul class="dropdown-menu" style="margin-right: auto" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a th:text="#{html.common.menu.login}" class="dropdown-item"
+                           th:href="@{/login}"></a></li>
+                    <li><a th:text="#{html.common.menu.logout}" class="dropdown-item"
+                           th:href="@{/logout}"></a></li>
+                    <li><a th:text="#{html.common.menu.signup}" class="dropdown-item"
+                           th:href="@{/signup}"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container" th:fragment="footer">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <span th:text="#{html.common.footer}" class="text-muted"></span>
+        </div>
+
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+
+            <li class="ms-3"><a class="text-muted"
+                                href="https://github.com/Szermiona"
+                                target="_blank">
+                <i class="bi bi-github">
+                    <use xlink:href="#github"></use>
+                </i>
+            </a></li>
+
+        </ul>
+    </footer>
+</div>
+
+</body>
+</html>

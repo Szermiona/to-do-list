@@ -66,6 +66,6 @@ public class AnonymousController {
 
     @GetMapping("/register")
     public String displayRegistrationForm() {
-        return "register";
+        return "signup";
     }
 }
