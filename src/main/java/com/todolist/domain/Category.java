@@ -1,4 +1,4 @@
-package com.todolist.model;
+package com.todolist.domain;
 
 public enum Category {
     GENERAL ("General"),

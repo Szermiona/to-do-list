@@ -1,6 +1,7 @@
-package com.todolist.model;
+package com.todolist.entity;
 
 
+import com.todolist.domain.Category;
 import lombok.*;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;

@@ -2,7 +2,7 @@ package com.todolist.service;
 
 import com.todolist.dto.CreateTaskDTO;
 import com.todolist.dto.TaskDTO;
-import com.todolist.model.TaskDAO;
+import com.todolist.entity.TaskDAO;
 import com.todolist.repository.TaskRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

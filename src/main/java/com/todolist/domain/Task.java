@@ -1,6 +1,5 @@
 package com.todolist.domain;
 
-import com.todolist.model.Category;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 

@@ -2,7 +2,7 @@ package com.todolist.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.todolist.model.Category;
+import com.todolist.domain.Category;
 
 import java.time.LocalDate;
 import java.util.UUID;

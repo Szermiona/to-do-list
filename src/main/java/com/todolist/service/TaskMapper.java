@@ -1,6 +1,6 @@
 package com.todolist.service;
 
-import com.todolist.model.TaskDAO;
+import com.todolist.entity.TaskDAO;
 import org.springframework.stereotype.Component;
 import com.todolist.dto.CreateTaskDTO;
 import com.todolist.dto.TaskDTO;
