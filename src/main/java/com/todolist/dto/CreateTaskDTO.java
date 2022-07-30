@@ -1,8 +1,8 @@
 package com.todolist.dto;
 
+import com.todolist.model.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import com.todolist.model.Category;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;

@@ -14,13 +14,13 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = Task.TABLE_NAME)
-public class Task {
+@Table(name = TaskDAO.TABLE_NAME)
+public class TaskDAO {
 
     public static final String TABLE_NAME = "tasks";
     public static final String COLUMN_PREFIX = "t_";
 
-    public Task(String description, Category category, int priority, LocalDate deadline) {
+    public TaskDAO(String description, Category category, int priority, LocalDate deadline) {
         this.description = description;
         this.category = category;
         this.priority = priority;

@@ -2,7 +2,7 @@ package com.todolist.service;
 
 import com.todolist.dto.CreateTaskDTO;
 import com.todolist.dto.TaskDTO;
-import com.todolist.model.Task;
+import com.todolist.model.TaskDAO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
-class TaskServiceTest {
+class TaskDAOServiceTest {
 
     @Autowired
     private TaskService taskService;
@@ -27,16 +27,16 @@ class TaskServiceTest {
     void populateDatabase() {
         List<TaskDTO> tasks = new ArrayList<>();
 
-        CreateTaskDTO createTaskDTO1 = new CreateTaskDTO("Task 1", Category.WORK, 1, LocalDate.now().plusDays(5));
+        CreateTaskDTO createTaskDTO1 = new CreateTaskDTO("TaskDAO 1", Category.WORK, 1, LocalDate.now().plusDays(5));
         tasks.add(taskService.addTask(createTaskDTO1));
 
-        CreateTaskDTO createTaskDTO2 = new CreateTaskDTO("Task 2", Category.HOUSEHOLD, 2, LocalDate.now().plusDays(10));
+        CreateTaskDTO createTaskDTO2 = new CreateTaskDTO("TaskDAO 2", Category.HOUSEHOLD, 2, LocalDate.now().plusDays(10));
         tasks.add(taskService.addTask(createTaskDTO2));
 
-        CreateTaskDTO createTaskDTO3 = new CreateTaskDTO("Task 3", Category.GENERAL, 3, LocalDate.now().plusDays(15));
+        CreateTaskDTO createTaskDTO3 = new CreateTaskDTO("TaskDAO 3", Category.GENERAL, 3, LocalDate.now().plusDays(15));
         tasks.add(taskService.addTask(createTaskDTO3));
 
-        CreateTaskDTO createTaskDTO4 = new CreateTaskDTO("Task 4", Category.PERSONAL, 4, LocalDate.now().plusDays(20));
+        CreateTaskDTO createTaskDTO4 = new CreateTaskDTO("TaskDAO 4", Category.PERSONAL, 4, LocalDate.now().plusDays(20));
         tasks.add(taskService.addTask(createTaskDTO4));
     }
 
@@ -53,12 +53,12 @@ class TaskServiceTest {
 
     @Test
     void addTask_returnsTaskDTO_givenTaskObject() {
-        Task task = new Task();
-        task.setCategory(Category.HOUSEHOLD);
-        task.setDeadline(LocalDate.now().plusDays(10));
-        task.setDescription("task description");
-        task.setPriority(3);
-        TaskDTO taskDTO = taskService.addTask(task);
+        TaskDAO taskDAO = new TaskDAO();
+        taskDAO.setCategory(Category.HOUSEHOLD);
+        taskDAO.setDeadline(LocalDate.now().plusDays(10));
+        taskDAO.setDescription("taskDAO description");
+        taskDAO.setPriority(3);
+        TaskDTO taskDTO = taskService.addTask(taskDAO);
         Assertions.assertNotNull(taskDTO);
     }
 
