@@ -27,16 +27,16 @@ class TaskServiceTest {
     void populateDatabase() {
         List<TaskDTO> tasks = new ArrayList<>();
 
-        CreateTaskDTO createTaskDTO1 = new CreateTaskDTO("TaskDAO 1", Category.WORK, 1, LocalDate.now().plusDays(5));
+        CreateTaskDTO createTaskDTO1 = new CreateTaskDTO("Task 1", Category.WORK, 1, LocalDate.now().plusDays(5));
         tasks.add(taskService.addTask(createTaskDTO1));
 
-        CreateTaskDTO createTaskDTO2 = new CreateTaskDTO("TaskDAO 2", Category.HOUSEHOLD, 2, LocalDate.now().plusDays(10));
+        CreateTaskDTO createTaskDTO2 = new CreateTaskDTO("Task 2", Category.HOUSEHOLD, 2, LocalDate.now().plusDays(10));
         tasks.add(taskService.addTask(createTaskDTO2));
 
-        CreateTaskDTO createTaskDTO3 = new CreateTaskDTO("TaskDAO 3", Category.GENERAL, 3, LocalDate.now().plusDays(15));
+        CreateTaskDTO createTaskDTO3 = new CreateTaskDTO("Task 3", Category.GENERAL, 3, LocalDate.now().plusDays(15));
         tasks.add(taskService.addTask(createTaskDTO3));
 
-        CreateTaskDTO createTaskDTO4 = new CreateTaskDTO("TaskDAO 4", Category.PERSONAL, 4, LocalDate.now().plusDays(20));
+        CreateTaskDTO createTaskDTO4 = new CreateTaskDTO("Task 4", Category.PERSONAL, 4, LocalDate.now().plusDays(20));
         tasks.add(taskService.addTask(createTaskDTO4));
     }
 
@@ -52,7 +52,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void addTask_returnsTaskDTO_givenTaskObject() {
+    void addTask_returnsTaskDTO_givenTaskEntity() {
         TaskDAO taskDAO = new TaskDAO();
         taskDAO.setCategory(Category.HOUSEHOLD);
         taskDAO.setDeadline(LocalDate.now().plusDays(10));
@@ -70,12 +70,14 @@ class TaskServiceTest {
 
     @Test
     void deleteById() {
+        Assertions.assertEquals(4, taskRepository.findAll().size());
         taskService.deleteById(taskRepository.findAll().get(0).getId());
         Assertions.assertEquals(3, taskRepository.findAll().size());
     }
 
     @Test
     void deleteAll() {
+        Assertions.assertEquals(4, taskRepository.findAll().size());
         taskService.deleteAll();
         Assertions.assertEquals(0, taskRepository.findAll().size());
     }

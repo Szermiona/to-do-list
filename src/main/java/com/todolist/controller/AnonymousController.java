@@ -19,7 +19,9 @@ import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
-public class TaskController {
+public class AnonymousController {
+
+    private final TaskService taskService;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -27,7 +29,11 @@ public class TaskController {
                 new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true, 10));
     }
 
-    private final TaskService taskService;
+    @GetMapping("/")
+    public String displayMainPage(Model model) {
+        model.addAttribute("taskList", taskService.fetchAll());
+        return "index";
+    }
 
     @GetMapping("/add-task")
     public String displayAddForm(Model model) {
@@ -56,5 +62,10 @@ public class TaskController {
     public RedirectView deleteAllTasks() {
         taskService.deleteAll();
         return new RedirectView("/");
+    }
+
+    @GetMapping("/register")
+    public String displayRegistrationForm() {
+        return "register";
     }
 }
