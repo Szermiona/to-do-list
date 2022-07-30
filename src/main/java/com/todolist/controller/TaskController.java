@@ -53,8 +53,8 @@ public class TaskController {
     }
 
     @GetMapping("/delete-all")
-    public String deleteAllTasks() {
+    public RedirectView deleteAllTasks() {
         taskService.deleteAll();
-        return "index";
+        return new RedirectView("/");
     }
 }
