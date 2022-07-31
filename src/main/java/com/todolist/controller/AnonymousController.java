@@ -35,4 +35,9 @@ public class AnonymousController {
     public String displayRegistrationForm() {
         return "signup";
     }
+
+    @GetMapping("/login")
+    public String displayLoginForm() {
+        return "login";
+    }
 }
