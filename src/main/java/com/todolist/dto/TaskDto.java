@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Data
 @NoArgsConstructor
-public class TaskDTO {
+public class TaskDto {
 
     private UUID id;
     private String description;

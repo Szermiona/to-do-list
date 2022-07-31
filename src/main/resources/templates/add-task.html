@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <label class="my-2" th:text="#{add.form.category}">Task description</label>
                     <select class="form-select" aria-label="Płeć" th:field="*{category}">
-                        <option th:each="category : ${T(com.todolist.entity.Category).values()}"
+                        <option th:each="category : ${T(com.todolist.domain.Category).values()}"
                                 th:value="${category}" th:text="${category.getName()}"></option>
                     </select>
                 </div>

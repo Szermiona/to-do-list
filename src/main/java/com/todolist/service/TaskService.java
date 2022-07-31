@@ -1,8 +1,8 @@
 package com.todolist.service;
 
-import com.todolist.dto.CreateTaskDTO;
-import com.todolist.dto.TaskDTO;
-import com.todolist.entity.TaskDAO;
+import com.todolist.dto.CreateTaskDto;
+import com.todolist.dto.TaskDto;
+import com.todolist.entity.TaskDao;
 import com.todolist.repository.TaskRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -27,27 +27,27 @@ public class TaskService {
 
 
     @Transactional
-    public TaskDTO addTask(CreateTaskDTO createTaskDTO) {
-        TaskDAO taskDAO = taskMapper.mapToEntity(createTaskDTO);
+    public TaskDto addTask(CreateTaskDto createTaskDTO) {
+        TaskDao taskDAO = taskMapper.mapToEntity(createTaskDTO);
         taskRepository.save(taskDAO);
         return taskMapper.mapToDto(taskDAO);
     }
 
     @Transactional
-    public TaskDTO addTask(TaskDAO taskDAO) {
+    public TaskDto addTask(TaskDao taskDAO) {
         taskRepository.save(taskDAO);
         return taskMapper.mapToDto(taskDAO);
     }
 
     @Transactional
-    public List<TaskDTO> fetchAll() {
-        List<TaskDAO> all = taskRepository.findAll();
+    public List<TaskDto> fetchAll() {
+        List<TaskDao> all = taskRepository.findAll();
         return taskMapper.mapToDto(all);
     }
 
     @Transactional
-    public TaskDTO findById(UUID id) {
-        Optional<TaskDAO> task = taskRepository.findById(id);
+    public TaskDto findById(UUID id) {
+        Optional<TaskDao> task = taskRepository.findById(id);
         return task.map(taskMapper::mapToDto).orElse(null);
     }
 
@@ -56,7 +56,7 @@ public class TaskService {
         if (taskRepository.findById(id).isPresent()) {
             taskRepository.deleteById(id);
         } else {
-            throw new IllegalArgumentException("TaskDAO not found.");
+            throw new IllegalArgumentException("TaskDao not found.");
         }
     }
 
@@ -65,7 +65,7 @@ public class TaskService {
         if (!taskRepository.findAll().isEmpty()) {
             taskRepository.deleteAll();
         } else {
-            throw new IllegalArgumentException("TaskDAO list is empty.");
+            throw new IllegalArgumentException("TaskDao list is empty.");
         }
     }
 

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateTaskDTO {
+public class CreateTaskDto {
 
     private String description;
     private Category category;
