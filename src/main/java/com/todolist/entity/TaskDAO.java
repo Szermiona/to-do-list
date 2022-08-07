@@ -22,12 +22,12 @@ public class TaskDAO {
     public static final String TABLE_NAME = "tasks";
     public static final String COLUMN_PREFIX = "t_";
 
-    public TaskDAO(String description, Category category, int priority, LocalDate deadline, UserDAO userDao) {
+    public TaskDAO(String description, Category category, int priority, LocalDate deadline, UserDAO userDAO) {
         this.description = description;
         this.category = category;
         this.priority = priority;
         this.deadline = deadline;
-        this.userDao = userDao;
+        this.userDAO = userDAO;
     }
 
     @Id
@@ -53,5 +53,5 @@ public class TaskDAO {
     @ManyToOne
     @JoinColumn(name = UserDAO.COLUMN_PREFIX + "id")
 //    @NotNull
-    private UserDAO userDao;
+    private UserDAO userDAO;
 }

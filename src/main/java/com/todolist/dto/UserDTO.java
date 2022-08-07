@@ -14,7 +14,7 @@ import java.util.UUID;
 public class UserDTO implements Serializable {
 
     private UUID id;
-    private String username;
+    private String userName;
     private String password;
     private String email;
     private String role;
