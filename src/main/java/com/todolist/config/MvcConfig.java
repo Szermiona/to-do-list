@@ -12,7 +12,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import java.util.Locale;
 
 @Configuration
-@ComponentScan(basePackages = "com.todolist.config")
+@ComponentScan("com.todolist")
 public class MvcConfig implements WebMvcConfigurer {
 
     @Bean

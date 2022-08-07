@@ -16,13 +16,13 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = TaskDao.TABLE_NAME)
-public class TaskDao {
+@Table(name = TaskDAO.TABLE_NAME)
+public class TaskDAO {
 
     public static final String TABLE_NAME = "tasks";
     public static final String COLUMN_PREFIX = "t_";
 
-    public TaskDao(String description, Category category, int priority, LocalDate deadline, UserDao userDao) {
+    public TaskDAO(String description, Category category, int priority, LocalDate deadline, UserDAO userDao) {
         this.description = description;
         this.category = category;
         this.priority = priority;
@@ -51,7 +51,7 @@ public class TaskDao {
     private LocalDate deadline;
 
     @ManyToOne
-    @JoinColumn(name = UserDao.COLUMN_PREFIX + "id")
+    @JoinColumn(name = UserDAO.COLUMN_PREFIX + "id")
 //    @NotNull
-    private UserDao userDao;
+    private UserDAO userDao;
 }

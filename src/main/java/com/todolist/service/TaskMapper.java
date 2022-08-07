@@ -1,9 +1,9 @@
 package com.todolist.service;
 
-import com.todolist.entity.TaskDao;
+import com.todolist.entity.TaskDAO;
 import org.springframework.stereotype.Component;
-import com.todolist.dto.CreateTaskDto;
-import com.todolist.dto.TaskDto;
+import com.todolist.dto.CreateTaskDTO;
+import com.todolist.dto.TaskDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 @Component
 public class TaskMapper {
 
-    public TaskDto mapToDto(TaskDao taskDAO) {
-        TaskDto taskDTO = new TaskDto();
+    public TaskDTO mapToDto(TaskDAO taskDAO) {
+        TaskDTO taskDTO = new TaskDTO();
         taskDTO.setCategory(taskDAO.getCategory());
         taskDTO.setDeadline(taskDAO.getDeadline());
         taskDTO.setDescription(taskDAO.getDescription());
@@ -23,18 +23,18 @@ public class TaskMapper {
         return taskDTO;
     }
 
-    public List<TaskDto> mapToDto(List<TaskDao> taskDaoList) {
-        if (Optional.ofNullable(taskDaoList).isEmpty()) {
+    public List<TaskDTO> mapToDto(List<TaskDAO> taskDAOList) {
+        if (Optional.ofNullable(taskDAOList).isEmpty()) {
             return new ArrayList<>();
         } else {
-            return taskDaoList.stream()
+            return taskDAOList.stream()
                     .map(this::mapToDto)
                     .collect(Collectors.toList());
         }
     }
     
-    public TaskDao mapToEntity(CreateTaskDto createTaskDTO) {
-        TaskDao taskDAO = new TaskDao();
+    public TaskDAO mapToEntity(CreateTaskDTO createTaskDTO) {
+        TaskDAO taskDAO = new TaskDAO();
 //        taskDAO.setId(UUID.randomUUID());
         taskDAO.setCategory(createTaskDTO.getCategory());
         taskDAO.setDeadline(createTaskDTO.getDeadline());

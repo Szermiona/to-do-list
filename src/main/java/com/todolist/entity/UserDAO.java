@@ -15,15 +15,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = UserDao.TABLE_NAME)
-public class UserDao {
+@Table(name = UserDAO.TABLE_NAME)
+public class UserDAO {
 
     public static final String TABLE_NAME = "users";
     public static final String COLUMN_PREFIX = "u_";
 
-    public UserDao(UUID id, String username, String password, String email, String role, boolean isActive) {
-        this.id = id;
-        this.username = username;
+    public UserDAO(String userName, String password, String email, String role, boolean isActive) {
+        this.userName = userName;
         this.password = password;
         this.email = email;
         this.role = role;
@@ -36,8 +35,8 @@ public class UserDao {
     @Column(name = COLUMN_PREFIX + "id")
     private UUID id;
 
-    @Column(name = COLUMN_PREFIX + "username")
-    private String username;
+    @Column(name = COLUMN_PREFIX + "userName")
+    private String userName;
 
     @Column(name = COLUMN_PREFIX + "password")
     private String password;

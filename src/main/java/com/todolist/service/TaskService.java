@@ -1,10 +1,11 @@
 package com.todolist.service;
 
-import com.todolist.dto.CreateTaskDto;
-import com.todolist.dto.TaskDto;
-import com.todolist.entity.TaskDao;
+import com.todolist.dto.CreateTaskDTO;
+import com.todolist.dto.TaskDTO;
+import com.todolist.entity.TaskDAO;
 import com.todolist.repository.TaskRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,39 +16,39 @@ import java.util.UUID;
 @Service
 public class TaskService {
 
-    private final TaskRepository taskRepository;
-    private final TaskMapper taskMapper;
-    private final ModelMapper modelMapper;
+    private TaskRepository taskRepository;
+    private TaskMapper taskMapper;
 
-    public TaskService(TaskRepository taskRepository, TaskMapper taskMapper, ModelMapper modelMapper) {
+
+    @Autowired
+    public void setTaskService(TaskRepository taskRepository, TaskMapper taskMapper) {
         this.taskRepository = taskRepository;
         this.taskMapper = taskMapper;
-        this.modelMapper = modelMapper;
     }
 
 
     @Transactional
-    public TaskDto addTask(CreateTaskDto createTaskDTO) {
-        TaskDao taskDAO = taskMapper.mapToEntity(createTaskDTO);
+    public TaskDTO addTask(CreateTaskDTO createTaskDTO) {
+        TaskDAO taskDAO = taskMapper.mapToEntity(createTaskDTO);
         taskRepository.save(taskDAO);
         return taskMapper.mapToDto(taskDAO);
     }
 
     @Transactional
-    public TaskDto addTask(TaskDao taskDAO) {
+    public TaskDTO addTask(TaskDAO taskDAO) {
         taskRepository.save(taskDAO);
         return taskMapper.mapToDto(taskDAO);
     }
 
     @Transactional
-    public List<TaskDto> fetchAll() {
-        List<TaskDao> all = taskRepository.findAll();
+    public List<TaskDTO> fetchAll() {
+        List<TaskDAO> all = taskRepository.findAll();
         return taskMapper.mapToDto(all);
     }
 
     @Transactional
-    public TaskDto findById(UUID id) {
-        Optional<TaskDao> task = taskRepository.findById(id);
+    public TaskDTO findById(UUID id) {
+        Optional<TaskDAO> task = taskRepository.findById(id);
         return task.map(taskMapper::mapToDto).orElse(null);
     }
 
@@ -56,7 +57,7 @@ public class TaskService {
         if (taskRepository.findById(id).isPresent()) {
             taskRepository.deleteById(id);
         } else {
-            throw new IllegalArgumentException("TaskDao not found.");
+            throw new IllegalArgumentException("TaskDAO not found.");
         }
     }
 
@@ -65,7 +66,7 @@ public class TaskService {
         if (!taskRepository.findAll().isEmpty()) {
             taskRepository.deleteAll();
         } else {
-            throw new IllegalArgumentException("TaskDao list is empty.");
+            throw new IllegalArgumentException("TaskDAO list is empty.");
         }
     }
 

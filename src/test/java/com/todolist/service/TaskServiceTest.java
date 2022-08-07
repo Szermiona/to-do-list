@@ -1,8 +1,8 @@
 package com.todolist.service;
 
-import com.todolist.dto.CreateTaskDto;
-import com.todolist.dto.TaskDto;
-import com.todolist.entity.TaskDao;
+import com.todolist.dto.CreateTaskDTO;
+import com.todolist.dto.TaskDTO;
+import com.todolist.entity.TaskDAO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,46 +25,46 @@ class TaskServiceTest {
 
     @BeforeEach
     void populateDatabase() {
-        List<TaskDto> tasks = new ArrayList<>();
+        List<TaskDTO> tasks = new ArrayList<>();
 
-        CreateTaskDto createTaskDto1 = new CreateTaskDto("Task 1", Category.WORK, 1, LocalDate.now().plusDays(5));
-        tasks.add(taskService.addTask(createTaskDto1));
+        CreateTaskDTO createTaskDTO1 = new CreateTaskDTO("Task 1", Category.WORK, 1, LocalDate.now().plusDays(5));
+        tasks.add(taskService.addTask(createTaskDTO1));
 
-        CreateTaskDto createTaskDto2 = new CreateTaskDto("Task 2", Category.HOUSEHOLD, 2, LocalDate.now().plusDays(10));
-        tasks.add(taskService.addTask(createTaskDto2));
+        CreateTaskDTO createTaskDTO2 = new CreateTaskDTO("Task 2", Category.HOUSEHOLD, 2, LocalDate.now().plusDays(10));
+        tasks.add(taskService.addTask(createTaskDTO2));
 
-        CreateTaskDto createTaskDto3 = new CreateTaskDto("Task 3", Category.GENERAL, 3, LocalDate.now().plusDays(15));
-        tasks.add(taskService.addTask(createTaskDto3));
+        CreateTaskDTO createTaskDTO3 = new CreateTaskDTO("Task 3", Category.GENERAL, 3, LocalDate.now().plusDays(15));
+        tasks.add(taskService.addTask(createTaskDTO3));
 
-        CreateTaskDto createTaskDto4 = new CreateTaskDto("Task 4", Category.PERSONAL, 4, LocalDate.now().plusDays(20));
-        tasks.add(taskService.addTask(createTaskDto4));
+        CreateTaskDTO createTaskDTO4 = new CreateTaskDTO("Task 4", Category.PERSONAL, 4, LocalDate.now().plusDays(20));
+        tasks.add(taskService.addTask(createTaskDTO4));
     }
 
     @Test
     void addTask_returnsTaskDTO_givenCreateTaskDto() {
-        CreateTaskDto createTaskDTO = new CreateTaskDto();
+        CreateTaskDTO createTaskDTO = new CreateTaskDTO();
         createTaskDTO.setCategory(Category.HOUSEHOLD);
         createTaskDTO.setDeadline(LocalDate.now().plusDays(10));
         createTaskDTO.setDescription("task description");
         createTaskDTO.setPriority(3);
-        TaskDto taskDTO = taskService.addTask(createTaskDTO);
+        TaskDTO taskDTO = taskService.addTask(createTaskDTO);
         Assertions.assertNotNull(taskDTO);
     }
 
     @Test
     void addTask_returnsTaskDTO_givenTaskEntity() {
-        TaskDao taskDAO = new TaskDao();
+        TaskDAO taskDAO = new TaskDAO();
         taskDAO.setCategory(Category.HOUSEHOLD);
         taskDAO.setDeadline(LocalDate.now().plusDays(10));
         taskDAO.setDescription("taskDAO description");
         taskDAO.setPriority(3);
-        TaskDto taskDTO = taskService.addTask(taskDAO);
+        TaskDTO taskDTO = taskService.addTask(taskDAO);
         Assertions.assertNotNull(taskDTO);
     }
 
     @Test
     void fetchAll_returnsListOfTasks() {
-        List<TaskDto> tasks = taskService.fetchAll();
+        List<TaskDTO> tasks = taskService.fetchAll();
         Assertions.assertEquals(4, tasks.size());
     }
 

@@ -9,8 +9,8 @@ import javax.validation.constraints.Size;
 @Data
 public class User {
 
-    @Size(min = 5, max = 20, message = "{user.validation.username}")
-    @NotBlank(message = "{user.validation.username}")
+    @Size(min = 5, max = 20, message = "{user.validation.userName}")
+    @NotBlank(message = "{user.validation.userName}")
     private String username;
 
     @Size(min = 8, message = "{user.validation.password}")

@@ -1,7 +1,7 @@
 package com.todolist.controller;
 
 import com.todolist.domain.Task;
-import com.todolist.dto.CreateTaskDto;
+import com.todolist.dto.CreateTaskDTO;
 import com.todolist.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -40,7 +40,7 @@ public class AuthorizedController {
         if (result.hasErrors()) {
             return "add-task";
         }
-        CreateTaskDto createTaskDTO = new CreateTaskDto(task.getDescription(), task.getCategory(), task.getPriority(), task.getDeadline());
+        CreateTaskDTO createTaskDTO = new CreateTaskDTO(task.getDescription(), task.getCategory(), task.getPriority(), task.getDeadline());
         model.addAttribute("task", taskService.addTask(createTaskDTO));
         model.addAttribute("taskList", taskService.fetchAll());
         return "index";
